@@ -35,13 +35,14 @@ int main(void){
 		TMR1L = 0;
 
 		length = centimeters(length);
-
+		// caso o usuário esteja a uma distância
+		// menor que 30cm
 		if(length >= 10 && length <= 30) {
-			PORTBbits.RB0 = 1;
+			PORTBbits.RB5 = 1;
 			__delay_ms(25);
 
 		} else {
-			PORTBbits.RB0 = 0;
+			PORTBbits.RB5 = 0;
 		}
 	}
 
