@@ -4,6 +4,7 @@
 #include <math.h>
 
 #include "bit_config.h"
+#include "lcd.h"
 
 #define _XTAL_FREQ 4000000
 
@@ -20,6 +21,8 @@ int main(void){
 	// pinos do sensor ultrassônico
 	// trisa0: echo
 	// trisa1: trig
+	//
+	// pinos RS e E são na porta A também
 	TRISA = 0x02;
 
 	// prescaler 1:1
@@ -29,6 +32,9 @@ int main(void){
 	T1CONbits.TMR1CS = 0;
 
 	uint16_t length = 0;
+
+	lcd_reset();
+	lcd_initialize();
 
 	while(1){
 		TMR1H = 0;

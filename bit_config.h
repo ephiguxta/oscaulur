@@ -5,7 +5,6 @@
 
 	// não utilizaremos watchdog ainda
 	#pragma config WDTE = OFF
-
 	
 	// desabilitando o power-up timer
 	#pragma config PWRTE = OFF
