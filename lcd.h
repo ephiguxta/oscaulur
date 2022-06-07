@@ -12,3 +12,6 @@ void write_char(uint8_t data);
 
 // habilitando inserção de comando ou dado
 void data_or_cmd(uint8_t mode);
+
+// salta cursor para determinada posição
+void cursor_addr(uint8_t addr);

@@ -85,3 +85,27 @@ void write_char(uint8_t data) {
 	byte_slice(data, 1);
 	__delay_us(50);
 }
+
+void cursor_addr(uint8_t addr) {
+	// RS e E devem ser zero para que seja
+	// enviado o endereço da matriz
+	PORTAbits.RA2 = 0;
+	PORTAbits.RA3 = 0;
+
+	// os nibble mais significativo devem
+	// variar entre 1 0x8 a 0xf (7 possibilidades)
+	// o OR bit a bit foi feito para manter o
+	// quarto bit sempre ativo (0b1000);
+	PORTD = 0x0f & (addr | 0x08);
+	PORTAbits.RA3 = 1;
+	__delay_us(50);
+	PORTAbits.RA3 = 0;
+	PORTD = 0x00;
+
+	// nibble menos significatido;
+	PORTD = 0x0f & (addr >> 4);
+	PORTAbits.RA3 = 1;
+	__delay_us(50);
+	PORTAbits.RA3 = 0;
+	PORTD = 0x00;
+}
