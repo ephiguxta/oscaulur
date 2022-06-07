@@ -47,12 +47,12 @@ void lcd_initialize(void) {
 void byte_slice(uint8_t data, uint8_t mode) {
 	// nibble mais significativo
 	PORTB = (data >> 4);
-	data_or_cmd(mode);
+	data_or_cmd(data, mode);
 	PORTB = 0x00;
 
 	// nibble menos significativo
 	PORTB = (data & 0x0f);
-	data_or_cmd(mode);
+	data_or_cmd(data, mode);
 	PORTB = 0x00;
 }
 
@@ -108,4 +108,14 @@ void cursor_addr(uint8_t addr) {
 	__delay_us(50);
 	PORTAbits.RA3 = 0;
 	PORTD = 0x00;
+}
+
+void cursor_addr(uint8_t addr) {
+	if(addr >= 0x80 && addr <= 0x8f || \
+		addr >= 0xc0 && addr <= 0xcf) {
+		// linha 1: 0x80 a 0x8f
+		// linha 2: 0xc0 a 0xcf
+
+		byte_slice(addr, 0);
+	}
 }
