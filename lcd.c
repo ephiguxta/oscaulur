@@ -2,6 +2,7 @@
 #include <pic16f628a.h>
 #include <stdint.h>
 #include <math.h>
+#include <string.h>
 
 #define _XTAL_FREQ 4000000
 
@@ -84,6 +85,14 @@ void write_char(uint8_t data) {
 	// ao invés de caractere único.
 	byte_slice(data, 1);
 	__delay_us(50);
+}
+
+void write_string(uint8_t text[16]) {
+	// calculando o tamanho real do texto
+	uint8_t str_size = (uint8_t) strlen(text);
+
+	for(uint8_t i = 0; i < str_size; i++)
+		write_char(text[i]);
 }
 
 void cursor_addr(uint8_t addr) {

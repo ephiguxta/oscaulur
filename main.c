@@ -43,11 +43,18 @@ int main(void){
 	lcd_reset();
 	lcd_initialize();
 
+	uint8_t text_1[16] = "Dist: ";
+	write_str(text);
+
 	while(1){
 		TMR1H = 0;
 		TMR1L = 0;
 
 		length = centimeters(length);
+
+		cursor_addr(0x86);
+		write_str(text_1);
+
 		// caso o usuário esteja a uma distância
 		// menor que 30cm
 		if(length >= 10 && length <= 30) {
