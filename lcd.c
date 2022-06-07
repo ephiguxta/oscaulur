@@ -4,6 +4,7 @@
 #include <math.h>
 
 #define _XTAL_FREQ 4000000
+
 #include "lcd.h"
 
 // estabilizando o lcd
@@ -82,5 +83,5 @@ void write_char(uint8_t data) {
 	// programar uma função que escreva texto
 	// ao invés de caractere único.
 	byte_slice(data, 1);
-	__delay_us(500);
+	__delay_us(50);
 }

@@ -25,6 +25,13 @@ int main(void){
 	// pinos RS e E são na porta A também
 	TRISA = 0x02;
 
+	// datasheet: página 25
+	// associando o prescaler ao WDT (bit 3)
+	// prescaler 1:64 (bit 0 - 2)
+	// 16 * 64ms = 1152 ms
+	// 110 = 0x6
+	OPTION_REG = 0b10001110;
+
 	// prescaler 1:1
 	// datasheet: pág 50 - reg 7.1
 	T1CONbits.T1CKPS = 0x0;
@@ -50,6 +57,9 @@ int main(void){
 		} else {
 			PORTBbits.RB5 = 0;
 		}
+
+		// limpando o timer interno do WDT
+		CLRWDT();
 	}
 
 	return 0;

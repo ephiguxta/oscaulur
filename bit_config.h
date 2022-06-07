@@ -3,11 +3,11 @@
 	// utilizando o oscilador interno
 	#pragma config FOSC = INTOSCCLK
 
-	// não utilizaremos watchdog ainda
-	#pragma config WDTE = OFF
-	
-	// desabilitando o power-up timer
-	#pragma config PWRTE = OFF
+	// utilizando o WDT
+	#pragma config WDTE = ON
+
+	// estabilizando a inicialização
+	#pragma config PWRTE = ON
 
 	// habilitando master clear
 	#pragma config MCLRE = ON
