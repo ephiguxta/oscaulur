@@ -81,8 +81,6 @@ void write_char(uint8_t data) {
 	// arrumar a quebra de linha,
 	// caso escreva no endereço além do lcd
 	//
-	// programar uma função que escreva texto
-	// ao invés de caractere único.
 	byte_slice(data, 1);
 	__delay_us(50);
 }
